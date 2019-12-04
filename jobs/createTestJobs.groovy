@@ -21,7 +21,7 @@ println "Configuration data: \n$confgurationData"
 
 def urlToGetTestsFromJira = confgurationData.url + confgurationData.pathToGetTests
 
-def getRequest = new URL().openConnection(urlToGetTestsFromJira);
+def getRequest = new URL(urlToGetTestsFromJira).openConnection();
 def getResponse = getRequest.getResponseCode();
 println("Reponse code from $urlToGetTestsFromJira")
 
