@@ -6,7 +6,7 @@ import groovy.json.JsonSlurper
 
 def jsonSlurper = new JsonSlurper()
 def environment = "TEST"
-def confgurationData = jsonSlurper.parse(new File("/src/resources/configuration.json")).Environments.find {it.env==environment}
+def confgurationData = jsonSlurper.parse(new File("$WORKSPACE/src/resources/configuration.json")).Environments.find {it.env==environment}
 
 if (confgurationData==null) {
     println "No configuration data for environment $environment"
@@ -14,7 +14,6 @@ if (confgurationData==null) {
 }
 
 println "Configuration data: \n$confgurationData"
-
 
 /**
  * Getting test scenarios data form JIRA
@@ -40,7 +39,6 @@ def testConfigurationJson = jsonSlurper.parseText(responsePayload)
 /**
  * Building pipeline
  */
-
 
 def testPlanName = testConfigurationJson.TestPlan
 println (testPlanName + ": $testPlanName")
