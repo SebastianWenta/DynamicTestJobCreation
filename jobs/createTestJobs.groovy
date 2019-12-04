@@ -29,7 +29,7 @@ def responsePayload = ""
 
 if(getResponse.equals(200)) {
     responsePayload = getRequest.getInputStream().getText()
-    println(jsonRaw);
+    println(responsePayload);
 } else {
     println "Response code different than expected 200: $getResponse"
 }
