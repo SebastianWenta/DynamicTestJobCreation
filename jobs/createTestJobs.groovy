@@ -84,3 +84,13 @@ pipelineJob("$testPlanName") {
         }
     }
 }
+
+/**
+ * Adding jobs to view
+ */
+
+listView("DSL") {
+    jobs {
+        name("$testPlanName")
+    }
+}
