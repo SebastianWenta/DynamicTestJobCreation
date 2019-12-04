@@ -93,4 +93,14 @@ listView("DSL") {
     jobs {
         name("$testPlanName")
     }
+    columns {
+        status()
+        weather()
+        name()
+        description()
+        lastSuccess()
+        lastFailure()
+        lastDuration()
+        buildButton()
+    }
 }
