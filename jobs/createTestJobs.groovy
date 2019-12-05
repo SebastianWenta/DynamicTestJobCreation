@@ -96,7 +96,7 @@ pipelineJob("$testPlanName") {
 listView("DSL") {
     jobs {
         name("$testPlanName")
-        regex(/ID-.*/)
+        regex(/DSL-.*/)
     }
     columns {
         status()
