@@ -8,6 +8,8 @@ def jsonSlurper = new JsonSlurper()
 def environment = "TEST"
 def confgurationData = jsonSlurper.parse(new File("$WORKSPACE/src/resources/configuration.json")).Environments.find {it.env==environment}
 
+println("JIRA - " + $jira)
+
 if (confgurationData==null) {
     println "No configuration data for environment $environment"
     return
@@ -92,6 +94,7 @@ pipelineJob("$testPlanName") {
 listView("DSL") {
     jobs {
         name("$testPlanName")
+        regex(/ID-.*/)
     }
     columns {
         status()
