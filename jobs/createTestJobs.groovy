@@ -8,7 +8,7 @@ def jsonSlurper = new JsonSlurper()
 def environment = "TEST"
 def confgurationData = jsonSlurper.parse(new File("$WORKSPACE/src/resources/configuration.json")).Environments.find {it.env==environment}
 
-println("JIRA - " + $jira)
+println("JIRA - " + params.toString())
 
 if (confgurationData==null) {
     println "No configuration data for environment $environment"
