@@ -2,7 +2,7 @@
   "Environments":[ {
     "env": "TEST",
     "url": "http://localhost:8081/",
-    "pathToGetTests": "rest/scriptrunner/latest/custom/getTests",
+    "pathToGetTests": "rest/scriptrunner/latest/custom/getTests?key=",
     "login": "admin",
     "password": "admin"
   }, {

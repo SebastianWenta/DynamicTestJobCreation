@@ -21,7 +21,9 @@ println "Configuration data: \n$confgurationData"
  * Getting test scenarios data form JIRA
  */
 
-def urlToGetTestsFromJira = confgurationData.url + confgurationData.pathToGetTests
+def urlToGetTestsFromJira = confgurationData.url + confgurationData.pathToGetTests + jira
+
+println ("URL to JIRA: " + urlToGetTestsFromJira)
 
 def getRequest = new URL(urlToGetTestsFromJira).openConnection();
 def getResponse = getRequest.getResponseCode();
