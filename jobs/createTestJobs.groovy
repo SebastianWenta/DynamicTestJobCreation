@@ -93,9 +93,6 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
 
 testScripts.add(iterationScript)
 
-//println testScript
-println "testScripts: " + testScripts
-
 testScripts.eachWithIndex{ String part, int index ->
 
     println "index: ${index} "
