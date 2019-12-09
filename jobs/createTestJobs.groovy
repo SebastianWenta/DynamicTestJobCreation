@@ -52,7 +52,9 @@ def testScript = ""
 testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
     println "$index - $scenario.name - $scenario.id"
     testScript+="""stage('$scenario.id') {
-                        agent any
+                        agent {
+                            label 'SgStacje'
+                        }
                         steps {
                             script{
                                 println("$scenario.id - $scenario.name")
