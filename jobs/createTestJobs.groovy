@@ -108,8 +108,11 @@ testScripts.eachWithIndex{ String part, int index ->
                     ''' + part + '''
         		}
 			}
-                stage ('Run next job') {
-                    build job: ''' + testPlanName + '''_''' + index+1 + '''
+            stage ('Run next job') {
+                steps{
+                    step{
+                        build job: ''' + testPlanName + '''_''' + index + 1 + '''
+                    }
                 }
             }
     	}
