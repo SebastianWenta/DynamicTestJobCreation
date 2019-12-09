@@ -97,6 +97,13 @@ pipelineJob("$testPlanName") {
 }
 
 /**
+ * Running test job
+ */
+
+build job: testPlanName
+
+
+/**
  * Adding jobs to view
  */
 
