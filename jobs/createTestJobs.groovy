@@ -58,6 +58,9 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
                         steps {
                             script{
                                 println("$scenario.id - $scenario.name")
+                                def time = 5
+                                echo "Waiting ${time} seconds for test to complete"
+                                sleep time.toInteger() // seconds
                             }
                         }
                         post {
