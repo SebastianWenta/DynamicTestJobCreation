@@ -81,6 +81,7 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
     testScript+=scriptValue
     iterationScript+=scriptValue
     if (index % 10 == 0 && index > 0){
+        println "Adding to array with ${index}"
         testScripts.add(iterationScript)
         iterationScript = ""
     }
@@ -89,7 +90,12 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
 println testScript
 println testScripts
 
-testScript.eachWithIndex{ String part, int index ->
+testScripts.eachWithIndex{ String part, int index ->
+
+    println "index: ${index} "
+    println "part: ${part} "
+
+    /**
     pipelineJob("${testPlanName}_${index}") {
         definition {
             cps {
@@ -109,6 +115,7 @@ testScript.eachWithIndex{ String part, int index ->
             }
         }
     }
+     */
 }
 
 
@@ -138,7 +145,7 @@ pipelineJob("$testPlanName") {
  * Running test job
  */
 
-queue(testPlanName)
+//queue(testPlanName)
 
 
 /**
