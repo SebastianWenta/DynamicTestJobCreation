@@ -113,7 +113,9 @@ testScripts.eachWithIndex{ String part, int index ->
             stage ('Run next job') {
                 steps{
                     script{
-                        build job: \'''' + testPlanName + '''_''' + (index + 1) + '''\', propagate: false
+                        try {
+                            build job: \'''' + testPlanName + '''_''' + (index + 1) + '''\', propagate: false
+                        } catch (Exception e){}
                     }
                 }
             }
