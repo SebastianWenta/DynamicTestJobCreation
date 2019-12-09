@@ -110,6 +110,7 @@ testScripts.eachWithIndex{ String part, int index ->
 			}
 			stage ('Run next job') {
                 build job: ''' + testPlanName + '''_''' + index+1 + '''
+            }
     	}
 	}
       '''.stripIndent())
