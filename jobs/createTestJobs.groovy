@@ -69,6 +69,8 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
             """
 }
 
+println testScript
+
 pipelineJob("$testPlanName") {
     definition {
         cps {
