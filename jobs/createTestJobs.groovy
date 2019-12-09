@@ -87,6 +87,7 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
         println "Adding to array with ${index}"
         testScripts.add(iterationScript)
         iterationScript = ""
+        internalIterator = 0
     }
 }
 
