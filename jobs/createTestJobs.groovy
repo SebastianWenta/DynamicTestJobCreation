@@ -49,9 +49,14 @@ println (testPlanName + ": $testPlanName")
 
 def testScript = ""
 
+def testScripts = []
+
+def iterationScript = ""
+
 testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
     println "$index - $scenario.name - $scenario.id"
-    testScript+="""stage('$scenario.id') {
+
+    def scriptValue = """stage('$scenario.id') {
                         agent {
                             label 'SgStacje'
                         }
@@ -72,10 +77,42 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
                     }
                     }                
             """
+
+    testScript+=scriptValue
+    iterationScript+=scriptValue
+    if (index % 10 == 0 && index > 0){
+        testScripts.add(iterationScript)
+        iterationScript = ""
+    }
 }
 
 println testScript
+println testScripts
 
+testScript.eachWithIndex{ String part, int index ->
+    pipelineJob("${testPlanName}_${index}") {
+        definition {
+            cps {
+                script('''
+    pipeline {
+        agent none
+        stages {
+            stage('Run Tests') {
+                parallel {
+                    ''' + part + '''
+        		}
+			}
+    	}
+	}
+      '''.stripIndent())
+                sandbox()
+            }
+        }
+    }
+}
+
+
+/**
 pipelineJob("$testPlanName") {
     definition {
         cps {
@@ -95,6 +132,7 @@ pipelineJob("$testPlanName") {
         }
     }
 }
+*/
 
 /**
  * Running test job
