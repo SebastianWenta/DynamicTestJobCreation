@@ -47,8 +47,6 @@ def testConfigurationJson = jsonSlurper.parseText(responsePayload)
 def testPlanName = testConfigurationJson.TestPlan
 println (testPlanName + ": $testPlanName")
 
-def testScript = ""
-
 def testScripts = []
 
 def iterationScript = ""
@@ -81,7 +79,6 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
 
     internalIterator++
 
-    //testScript+=scriptValue
     iterationScript+=scriptValue
     if (internalIterator==10){
         println "Adding to array with ${index}"
@@ -111,6 +108,8 @@ testScripts.eachWithIndex{ String part, int index ->
                     ''' + part + '''
         		}
 			}
+			stage ('Run next job') {
+                build job: ''' + testPlanName + '''_''' + index+1 + '''
     	}
 	}
       '''.stripIndent())
@@ -120,29 +119,6 @@ testScripts.eachWithIndex{ String part, int index ->
     }
 
 }
-
-
-/**
-pipelineJob("$testPlanName") {
-    definition {
-        cps {
-            script('''
-    pipeline {
-        agent none
-        stages {
-            stage('Run Tests') {
-                parallel {
-                    ''' + testScript + '''
-        		}
-			}
-    	}
-	}
-      '''.stripIndent())
-            sandbox()
-        }
-    }
-}
-*/
 
 /**
  * Running test job
