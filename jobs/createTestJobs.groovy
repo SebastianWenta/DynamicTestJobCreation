@@ -52,6 +52,7 @@ def testScript = ""
 def testScripts = []
 
 def iterationScript = ""
+def internalIterator = 0
 
 testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
     println "$index - $scenario.name - $scenario.id"
@@ -78,17 +79,21 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
                     }                
             """
 
-    testScript+=scriptValue
+    internalIterator++
+
+    //testScript+=scriptValue
     iterationScript+=scriptValue
-    if (index % 10 == 0 && index > 0){
+    if (internalIterator==10){
         println "Adding to array with ${index}"
         testScripts.add(iterationScript)
         iterationScript = ""
     }
 }
 
-println testScript
-println testScripts
+testScripts.add(iterationScript)
+
+//println testScript
+println "testScripts: " + testScripts
 
 testScripts.eachWithIndex{ String part, int index ->
 
