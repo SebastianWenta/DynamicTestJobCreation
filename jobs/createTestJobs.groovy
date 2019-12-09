@@ -62,8 +62,8 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
                         steps {
                             script{
                                 println("$scenario.id - $scenario.name")
-                                def time = 5
-                                echo "Waiting 5 seconds for test to complete"
+                                def time = 1
+                                echo "Waiting 1 seconds for test to complete"
                                 sleep time.toInteger() // seconds
                             }
                         }
@@ -90,6 +90,8 @@ testConfigurationJson.Scenarios.eachWithIndex{ scenario, index ->
 
 testScripts.add(iterationScript)
 
+def arraySize =  testScripts.size()
+
 testScripts.eachWithIndex{ String part, int index ->
 
     println "index: ${index} "
@@ -111,7 +113,7 @@ testScripts.eachWithIndex{ String part, int index ->
             stage ('Run next job') {
                 steps{
                     script{
-                        build job: \'''' + testPlanName + '''_''' + (index + 1) + '''\'
+                        build job: \'''' + testPlanName + '''_''' + (index + 1) + '''\', propagate: false
                     }
                 }
             }
