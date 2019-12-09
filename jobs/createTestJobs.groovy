@@ -133,7 +133,7 @@ testScripts.eachWithIndex{ String part, int index ->
  * Running test job
  */
 
-//queue(testPlanName)
+queue("${testPlanName}_0")
 
 
 /**
