@@ -100,7 +100,7 @@ pipelineJob("$testPlanName") {
  * Running test job
  */
 
-build job: testPlanName
+queue(testPlanName)
 
 
 /**
