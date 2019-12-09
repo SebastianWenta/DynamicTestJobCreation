@@ -101,7 +101,7 @@ testScripts.eachWithIndex{ String part, int index ->
     println "index: ${index} "
     println "part: ${part} "
 
-    /**
+
     pipelineJob("${testPlanName}_${index}") {
         definition {
             cps {
@@ -121,7 +121,7 @@ testScripts.eachWithIndex{ String part, int index ->
             }
         }
     }
-     */
+
 }
 
 
